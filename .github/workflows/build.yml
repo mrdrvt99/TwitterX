@@ -56,7 +56,7 @@ jobs:
 
     steps:
       - name: Checkout Main
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           path: main
           ref: ${{ github.event.inputs.commit_id || github.ref }}
@@ -70,7 +70,7 @@ jobs:
           echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
 
       - name: Download Theos
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           repository: theos/theos
           ref: master
@@ -155,7 +155,7 @@ jobs:
       - name: Create Draft Release
         if: ${{ inputs.create_release }}
         id: create_release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
