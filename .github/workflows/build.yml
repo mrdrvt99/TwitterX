@@ -56,7 +56,7 @@ jobs:
 
     steps:
       - name: Checkout Main
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
         with:
           path: main
           ref: ${{ github.event.inputs.commit_id || github.ref }}
@@ -70,7 +70,7 @@ jobs:
           echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
 
       - name: Download Theos
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
         with:
           repository: theos/theos
           ref: master
