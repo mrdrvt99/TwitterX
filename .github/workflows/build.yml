@@ -50,13 +50,13 @@ concurrency:
 jobs:
   build:
     name: Build TwitterX
-    runs-on: macos-latest
+    runs-on: macos-15
     permissions:
       contents: write
 
     steps:
       - name: Checkout Main
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7
         with:
           path: main
           ref: ${{ github.event.inputs.commit_id || github.ref }}
@@ -70,10 +70,10 @@ jobs:
           echo "$(brew --prefix make)/libexec/gnubin" >> "$GITHUB_PATH"
 
       - name: Download Theos
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7
         with:
           repository: theos/theos
-          ref: master
+          ref: 9bc73406cf80b711ef4d02c15ff1dedc4478a275
           path: theos
           submodules: recursive
 
@@ -83,7 +83,7 @@ jobs:
 
       - name: iOS SDK Caching
         id: SDK
-        uses: actions/cache@v5.0.5
+        uses: actions/cache@v6
         env:
           cache-name: iOS-${{ inputs.sdk_version }}-SDK
         with:
@@ -94,7 +94,6 @@ jobs:
       - name: Download iOS SDK
         if: steps.SDK.outputs.cache-hit != 'true'
         run: |
-          # Only download the specific SDK version
           git clone -n --depth=1 --filter=tree:0 https://github.com/Tonwalter888/iOS-SDKs.git
           cd iOS-SDKs
           git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk
@@ -146,7 +145,7 @@ jobs:
 
       - name: Upload Artifact
         if: ${{ inputs.upload_artifact }}
-        uses: actions/upload-artifact@v7.0.1
+        uses: actions/upload-artifact@v7
         with:
           name: TwitterX_${{ env.X_VERSION }}
           path: ${{ github.workspace }}/main/packages/${{ steps.package_name.outputs.package }}
@@ -155,7 +154,7 @@ jobs:
       - name: Create Draft Release
         if: ${{ inputs.create_release }}
         id: create_release
-        uses: softprops/action-gh-release@v3.0.0
+        uses: softprops/action-gh-release@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
