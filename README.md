@@ -1,4 +1,4 @@
-# BHTwitter
+# [BHTwitter](https://github.com/BandarHL/BHTwitter)
 
 An awesome tweak for Twitter that enhances your experience with additional features and customization options. Get rid of ads, gain access to Twitter Blue features for free and much much more! 
 
@@ -8,7 +8,7 @@ An awesome tweak for Twitter that enhances your experience with additional featu
 
 ### Steps:
 
-1. **Sideload the [Login Fix](https://github.com/mrdrvt99/TwitterX/releases/download/v4.4.1/X.LOGIN.FIX.ipa) IPA first**  
+1. **Sideload the [Login Fix] IPA first**  
    This is required to bypass Twitter login guardrails.
 
 2. **Install the latest TwitterX IPA**  
